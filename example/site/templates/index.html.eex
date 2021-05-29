@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Moonshine</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+    <link rel="stylesheet" href="/styles.css"/>
+  </head>
+  <body>
+    <%= render.("site/templates/_header.html.eex", []) %>
+    <div class="lg:mx-64 md:mx-32 sm:mx-16 mx-4 my-20">
+      <ul class="divide-y divide-gray-200">
+        <%= for post <- posts do %>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="lg:ml-10 ml-2">
+                <a href="<%= post.slug %>" class="text-gray-800 underline"><%= post.title %></a>
+                <%= if post.draft  do%>
+                  <span class="text-xs text-gray-400">draft</span>
+                <% end %>
+                <p class="text-sm text-gray-400"><%= post.description %></p>
+              </div>
+            </div>
+            <span class="text-sm text-gray-500 w-20 lg:w-36"><%= Calendar.strftime(post.date, "%b %d, %Y") %></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
